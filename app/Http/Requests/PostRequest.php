@@ -27,7 +27,9 @@ class PostRequest extends FormRequest
             'title' => 'string',
             'text'=>'string',
             'tag_id'=>'',
-            'user_id'=>'',
+
         ];
+
+
     }
 }

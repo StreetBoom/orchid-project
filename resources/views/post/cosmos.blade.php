@@ -46,7 +46,7 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
                         </div>
 
-
+                        <input type="hidden" name="user_id" value="{{$post->user_id}}">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Create post</button>
@@ -81,8 +81,11 @@
                                      xmlns="http://www.w3.org/2000/svg"
                                      role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
                                      focusable="false"><title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c"/>
-                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Как блять</text>
+
+                                    <a>
+                                        <img src="{{$post->image}}" alt="как блять" width="200" height="250"/>
+                                    </a>
+
                                 </svg>
                             </div>
                         </div>

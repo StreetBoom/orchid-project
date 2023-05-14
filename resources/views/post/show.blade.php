@@ -14,7 +14,8 @@
                         height="500"
                     />
                     <div class="card-body">
-                        <h5 class="card-title">{{$post->title}}</h5>
+                        <h3 class="card-title"> Этот бред написал: {{$post->user->name}}</h3>
+                        <h5 class="card-title">Название бреда: {{$post->title}}</h5>
                         <p class="card-text">{{$post->text}}</p>
                     </div>
                     <div>

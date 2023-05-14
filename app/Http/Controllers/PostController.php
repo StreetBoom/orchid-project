@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
+
+
+
+
     public function sport(Post $post)
     {
         $tags = Tag::all();
@@ -26,7 +30,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function animal(Post $posts)
+    public function animal(Post $post)
     {
         $tags = Tag::all();
 
@@ -35,10 +39,11 @@ class PostController extends Controller
 
         return view('post.animal', [
             'posts' => $posts,
-            'tags' => $tags
+            'tags' => $tags,
+            'post' => $post,
         ]);
     }
-    public function cosmos(Post $posts)
+    public function cosmos(Post $post)
     {
         $tags = Tag::all();;
 //
@@ -47,12 +52,13 @@ class PostController extends Controller
         return view('post.cosmos', [
             'posts' => $posts,
             'tags' => $tags,
+            'post' => $post,
 
 
         ]);
     }
 
-    public function usa(Post $posts)
+    public function usa(Post $post)
     {
         $tags = Tag::all();;
 //
@@ -61,12 +67,13 @@ class PostController extends Controller
         return view('post.usa', [
             'posts' => $posts,
             'tags' => $tags,
+            'post' => $post,
 
 
         ]);
     }
 
-    public function it(Post $posts)
+    public function it(Post $post)
     {
         $tags = Tag::all();//
         $posts = Tag::find(5)->posts()->paginate(5);
@@ -74,6 +81,7 @@ class PostController extends Controller
         return view('post.it', [
             'posts' => $posts,
             'tags' => $tags,
+            'post' => $post,
 
 
         ]);
@@ -97,6 +105,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $data = $request->validated();
+        $data['user_id'] = auth()->user()->id;
         Post::create($data);
 
         return redirect()->route('postsSport');

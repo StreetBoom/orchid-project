@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->index('tag_id', 'post_tag_idx');
             $table->foreign('tag_id', 'post_tag_fx')->on('tags')->references('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->default(1);
             $table->index('user_id', 'user_tag_idx');
             $table->foreign('user_id', 'user_tag_fx')->on('users')->references('id');
 

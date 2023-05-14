@@ -19,7 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->text(20),
             'text' => $this->faker->realText(150),
-            'image' => $this->faker->imageUrl(),
+            'image' => $this->faker->imageUrl(600, 340),
             'tag_id' => random_int(1,5),
 
         ];

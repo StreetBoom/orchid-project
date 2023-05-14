@@ -45,5 +45,7 @@ Route::get('/usa', [PostController::class,'usa'])->name('postsUsa');
 Route::get('/it', [PostController::class,'it'])->name('postsIt');
 Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
 
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
 
 Route::post('post.store', [PostController::class, 'store'])->name('posts.store');
