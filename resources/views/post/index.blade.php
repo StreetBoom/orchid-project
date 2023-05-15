@@ -10,10 +10,10 @@
         <h1 class="display-4 fst-italic">"На этой страничке постики про спортик для реальных пацанов"</h1>
         <p class="lead my-3">Создай свой пост если ты реальный пидр</p>
 
-@auth('web')
-        <p class="lead mb-0"><a class="text-white fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Создать пост
-            </a></p>
+        @auth('web')
+            <p class="lead mb-0"><a class="text-white fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Создать пост
+                </a></p>
         @endauth
 
         <!-- Modal -->
@@ -21,12 +21,10 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">вфывфвыфв</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-black">
-
-
 
 
                         <form action="{{route('posts.store')}}" method="post">
@@ -47,7 +45,8 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Текст поста</label>
 
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                          name="text"></textarea>
                             </div>
 
                             <input type="hidden" name="user_id" value="{{$post->user_id}}">
@@ -56,7 +55,7 @@
                                 <button type="submit" class="btn btn-primary">Create post</button>
                             </div>
 
-                            </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -66,38 +65,51 @@
         </div>
 
 
-        
-            @foreach($posts as $post)
 
-                <div class="row mb-2">
-                    <div class="col-md-10 center">
-                        <div
-                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary">{{$post->tag->title}}</strong>
-                                <h3 class="mb-0">{{$post->title}}</h3>
-                                <div class="mb-1 text-body-secondary">{{$post->created_at}}</div>
-                                <p class="card-text mb-auto">{{$post->text}}</p>
-                                <a href="{{route('post.show',$post->id)}}" class="stretched-link">Continue reading</a>
-                            </div>
-                            <div class="col-auto d-none d-lg-block">
-                                <svg class="bd-placeholder-img" width="200" height="250"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                                     focusable="false"><title>Placeholder</title>
 
-                                    <a>
-                                        <img src="{{$post->image}}" alt="как блять" width="200" height="250"/>
-                                    </a>
+        <form action="{{ route('post.index') }}" method="get">
+            <div class="dropdown">
+            <select class="btn btn-dark dropdown-toggle" name="tag">
+                <option class="btn btn-dark dropdown-toggle" value="">All categories</option>
+                @foreach ($tags as $tag)
+                    <option class="btn btn-dark dropdown-toggle"
+                        value="{{ $tag->id }}" {{ $tag->id == request('category') ? 'selected' : '' }}>{{ $tag->title }}</option>
+                @endforeach
+            </select>
+            <button class="btn btn-dark dropdown-toggle" type="submit">Filter</button>
 
-                                </svg>
-                            </div>
+            </div>
+        @foreach($posts as $post)
+
+            <div class="row mb-2">
+                <div class="col-md-10 center">
+                    <div
+                        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">{{$post->title}}</strong>
+                            <h3 class="mb-0">{{$post->title}}</h3>
+                            <div class="mb-1 text-body-secondary">{{$post->created_at}}</div>
+                            <p class="card-text mb-auto">{{$post->text}}</p>
+                            <a href="{{route('post.show',$post->id)}}" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <svg class="bd-placeholder-img" width="200" height="250"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                                 focusable="false"><title>Placeholder</title>
+
+                                <a>
+                                    <img src="{{$post->image}}" alt="как блять" width="200" height="250"/>
+                                </a>
+
+                            </svg>
                         </div>
                     </div>
                 </div>
-
+            </div>
+        </form>
             @endforeach
-        </div>
-        {{ $posts->links() }}
+            </div>
+            {{ $posts->links() }}
     </main>
 @endsection

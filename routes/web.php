@@ -38,14 +38,13 @@ Route::screen('client', ClientListScreen::class)->name('client')->breadcrumbs(fu
         ->push('Клиент');
 });
 
-Route::get('/animal', [PostController::class,'animal'])->name('postsAnimal');
-Route::get('/sport', [PostController::class,'sport'])->name('postsSport');
-Route::get('/cosmos', [PostController::class,'cosmos'])->name('postsCosmos');
-Route::get('/usa', [PostController::class,'usa'])->name('postsUsa');
-Route::get('/it', [PostController::class,'it'])->name('postsIt');
+
+Route::get('/posts', [PostController::class,'sport'])->name('post.index');
+
 Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+
 
 
 Route::post('post.store', [PostController::class, 'store'])->name('posts.store');

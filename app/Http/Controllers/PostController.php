@@ -12,80 +12,24 @@ class PostController extends Controller
 
 
 
-
+//
 
     public function sport(Post $post)
     {
         $tags = Tag::all();
+        $query = Post::query();
 
+        if (request('tag')) {
+            $query->where('tag_id', request('tag'));
+        }
 
-        $posts = Tag::find(1)->posts()->paginate(5);
+        $posts = $query->orderBy('created_at', 'desc')->take(10)->paginate(10);
 
-        return view('post.sport', [
-            'tags' => $tags,
-            'posts' => $posts,
-            'post' => $post,
-
-
-        ]);
+        return view('post.index', compact('posts', 'tags','post'));
     }
 
-    public function animal(Post $post)
-    {
-        $tags = Tag::all();
 
-
-        $posts = Tag::find(2)->posts()->paginate(5);
-
-        return view('post.animal', [
-            'posts' => $posts,
-            'tags' => $tags,
-            'post' => $post,
-        ]);
-    }
-    public function cosmos(Post $post)
-    {
-        $tags = Tag::all();;
 //
-        $posts = Tag::find(3)->posts()->paginate(5);
-
-        return view('post.cosmos', [
-            'posts' => $posts,
-            'tags' => $tags,
-            'post' => $post,
-
-
-        ]);
-    }
-
-    public function usa(Post $post)
-    {
-        $tags = Tag::all();;
-//
-        $posts = Tag::find(4)->posts()->paginate(5);
-
-        return view('post.usa', [
-            'posts' => $posts,
-            'tags' => $tags,
-            'post' => $post,
-
-
-        ]);
-    }
-
-    public function it(Post $post)
-    {
-        $tags = Tag::all();//
-        $posts = Tag::find(5)->posts()->paginate(5);
-
-        return view('post.it', [
-            'posts' => $posts,
-            'tags' => $tags,
-            'post' => $post,
-
-
-        ]);
-    }
 
 
     public function show(Post $post)

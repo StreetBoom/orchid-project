@@ -232,11 +232,8 @@
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-            <a class="p-2 link-secondary" href="{{route('postsSport')}}">Cпортик</a>
-            <a class="p-2 link-secondary" href="{{route('postsAnimal')}}">Животные</a>
-            <a class="p-2 link-secondary" href="{{route('postsCosmos')}}">Космос</a>
-            <a class="p-2 link-secondary" href="{{route('postsUsa')}}">Забугорье</a>
-            <a class="p-2 link-secondary" href="{{route('postsIt')}}">IT</a>
+            <a class="p-2 link-secondary" href="{{route('post.index')}}">Постики</a>
+
 
         </nav>
     </div>
