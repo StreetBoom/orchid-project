@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('postsSport')" :active="request()->routeIs('Posts')">
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('Posts')">
                         {{ __('Посты') }}
                     </x-nav-link>
                 </div>

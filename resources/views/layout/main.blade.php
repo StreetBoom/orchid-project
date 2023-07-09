@@ -1,5 +1,3 @@
-
-
 <html lang="en" data-bs-theme="auto">
 <head>
 
@@ -232,9 +230,12 @@
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-            <a class="p-2 link-secondary" href="{{route('post.index')}}">Постики</a>
-
-
+            <a class="p-2 link-secondary" href="{{route('posts.index')}}">Постики</a>
+            @auth('web')
+            @if(Auth::user()->name === 'admin')
+                <a class="p-2 link-secondary" href="{{route('platform.index')}}">Админ панель</a>
+            @endif
+            @endauth
         </nav>
     </div>
 </div>

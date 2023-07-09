@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Orchid\Screens\Client\ClientListScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -17,7 +18,8 @@ use Tabuna\Breadcrumbs\Trail;
 |
 */
 
-Route::get('/', [PostController::class,'sport'])->name('postsSport');
+Route::get('/', [RegisteredUserController::class, 'create'])
+    ->name('register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,12 +41,10 @@ Route::screen('client', ClientListScreen::class)->name('client')->breadcrumbs(fu
 });
 
 
-Route::get('/posts', [PostController::class,'sport'])->name('post.index');
-
-Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
-
-
-
+Route::get('/posts', [PostController::class,'index'])->name('posts.index');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('posts.store', [PostController::class, 'store'])->name('posts.store');
+Route::post('posts.comment', [PostController::class, 'comment'])->name('posts.comment');
 
 
-Route::post('post.store', [PostController::class, 'store'])->name('posts.store');
+

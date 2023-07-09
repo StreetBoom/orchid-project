@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('image')->default('https://phonoteka.org/uploads/posts/2021-06/1622512759_25-phonoteka_org-p-drevnyaya-yaponiya-art-krasivo-26.jpg');
             $table->unsignedBigInteger('tag_id');
             $table->index('tag_id', 'post_tag_idx');
-            $table->foreign('tag_id', 'post_tag_fx')->on('tags')->references('id');
+            $table->foreign('tag_id', 'post_tag_fk')->on('tags')->references('id');
             $table->unsignedBigInteger('user_id')->default(1);
             $table->index('user_id', 'user_tag_idx');
-            $table->foreign('user_id', 'user_tag_fx')->on('users')->references('id');
+            $table->foreign('user_id', 'user_tag_fk')->on('users')->references('id');
 
             $table->timestamps();
             $table->softDeletes();

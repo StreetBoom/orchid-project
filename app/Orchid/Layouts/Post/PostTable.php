@@ -32,6 +32,7 @@ class PostTable extends Table
     {
         return [
 
+            TD::make('image', 'image')->width('250px'),
             TD::make('title', 'Название поста')->width('250px'),
             TD::make('text', 'Содержание поста')->width('250px'),
             TD::make('tag_id', 'Тема')->width('100px')->render(function (Post $post){

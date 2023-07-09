@@ -13,6 +13,7 @@ use Orchid\Screen\AsSource;
 class Post extends Model
 {
     use HasFactory;
+
     use AsSource;
     use Filterable;
     use Attachable;
@@ -24,7 +25,10 @@ class Post extends Model
     {
         return $this->belongsTo(Tag::class);
     }
-
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
